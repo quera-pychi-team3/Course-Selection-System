@@ -59,7 +59,7 @@ class EducationalDeputy(models.Model):
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     entry_year = jmodels.jDateField()
-    entry_term = models.IntegerField(max_length=1, choices=((1, 'نیمه اول'), (2, 'نیمه دوم')))
+    entry_term = models.IntegerField(choices=((1, 'نیمه اول'), (2, 'نیمه دوم')))
     gpa = models.DecimalField(max_digits=5, decimal_places=3)  # معدل => grade point average
     faculty = models.OneToOneField(to='college.Faculty', on_delete=models.CASCADE, related_name='student_faculty')
     field_of_study = models.OneToOneField(to='college.FieldOfStudy', on_delete=models.CASCADE,
