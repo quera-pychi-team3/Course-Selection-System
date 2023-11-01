@@ -1,7 +1,7 @@
 from django.db import models
 from accounts.models import Student
 from course.models import Course
-from college.models import Term
+from course.models import Term
 
 
 class RegistrationReq(models.Model):
