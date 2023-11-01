@@ -20,9 +20,25 @@ class Course(models.Model):
         return self.name
 
 
+class Term(models.Model):
+    name = models.CharField(max_length=256)
+    students = models.ManyToManyField(to='accounts.Student', related_name='term_student')
+    professors = models.ManyToManyField(to='accounts.Professor', related_name='term_professor')
+    TermCourses = models.ManyToManyField('TermCourse', related_name="+")
+    selection_start_time = models.DateTimeField()
+    selection_end_time = models.DateTimeField()
+    classes_start_time = models.DateTimeField()
+    classes_end_time = models.DateTimeField()
+    update_start_time = models.DateTimeField()
+    update_end_time = models.DateTimeField()
+    emergency_cancellation_end_time = models.DateTimeField()
+    exams_start_time = models.DateField()
+    term_end_time = models.DateField()
+
+
 class TermCourse(models.Model):
-    course = models.ForeignKey("Course", on_delete=models.CASCADE, related_name='term_course')
-    term = models.ForeignKey(to='college.Term', on_delete=models.CASCADE, related_name='term_course')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='term_course')
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, related_name='term_course')
     exam_date_time = jmodels.jDateTimeField()
     exam_venue = models.CharField(max_length=50)
     professor = models.ForeignKey(to='accounts.Professor', on_delete=models.CASCADE, related_name='term_course')
@@ -37,10 +53,10 @@ class TermCourse(models.Model):
 
 
 class StudentCourse(models.Model):
-    course = models.ForeignKey("Course", on_delete=models.CASCADE, related_name='student_course')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='student_course')
     course_state = models.CharField(max_length=50, choices=[('passed', 'قبول'), ('failed', 'مردود')])
     grade = models.IntegerField()
-    term = models.ForeignKey(to='college.Term', on_delete=models.CASCADE, related_name='student_course')
+    term = models.ForeignKey(Term, on_delete=models.CASCADE, related_name='student_course')
 
     def __str__(self):
         return self.course.name + ' - ' + self.term.name

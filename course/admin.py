@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, TermCourse, StudentCourse
+from .models import Course, TermCourse, StudentCourse, Term
 
 
 @admin.register(Course)
@@ -23,3 +23,4 @@ class StudentCourseAdmin(admin.ModelAdmin):
     search_fields = ('course__name', 'term__name')
 
 
+admin.site.register(Term, admin.ModelAdmin)
