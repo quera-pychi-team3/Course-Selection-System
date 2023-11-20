@@ -1,6 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt import views as jwt_views
+from accounts.views.schedule import ClassScheduleViewSet, ExamScheduleViewSet
 from .views import *
 from .views.professor import ProfessorViewSet
 from .views.student import StudentViewSet
@@ -23,4 +24,10 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('change-password-request/', ChangePasswordRequestView.as_view(), name='change_password_request'),
     path('change-password-action/<uidb64>/<token>/', ChangePasswordActionView.as_view(), name='change_password_action'),
+    path('student/<int:pk>/class-schedule/', ClassScheduleViewSet.as_view({'get': 'list'}), name='class-schedule-list'),
+    path('student/me/class-schedule/', ClassScheduleViewSet.as_view({'get': 'list'}), name='class-schedule-list-me'),
+    
+    path('student/<int:pk>/exam-schedule/', ExamScheduleViewSet.as_view({'get': 'list'}), name='exam-schedule-list'),
+    path('student/me/exam-schedule/', ExamScheduleViewSet.as_view({'get': 'list'}), name='exam-schedule-list-me'),
+    
 ] + student_router.urls + professor_router.urls + educational_deputy_router.urls
