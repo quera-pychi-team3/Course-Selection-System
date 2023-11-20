@@ -9,10 +9,10 @@ router = DefaultRouter()
 router.register(r'courses', views.CourseViewSet)
 router.register(r'term-courses', views.TermCourseViewSet)
 
-class_schedule_router = DefaultRouter
+class_schedule_router = DefaultRouter()
 class_schedule_router.register(r'class-schedule', ClassScheduleViewSet, basename='class-schedule')
 
-exam_schedule_router = DefaultRouter
+exam_schedule_router = DefaultRouter()
 exam_schedule_router.register(r'exam-schedule', ExamScheduleViewSet, basename='exam-schedule')
 
 urlpatterns = [
