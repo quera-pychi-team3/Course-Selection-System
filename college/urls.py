@@ -10,7 +10,7 @@ app_name = 'college'
 router = DefaultRouter()
 router.register(r'faculty', FacultyViewSet)
 router.register(r'terms', TermViewSet, basename='term')
-
+ 
 urlpatterns = [
                   path('terms/', TermListAPIView.as_view()),
                   path('term/<int:pk>/', TermDetailAPIView.as_view()),
