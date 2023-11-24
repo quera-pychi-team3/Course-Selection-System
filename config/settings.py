@@ -40,6 +40,7 @@ SECRET_KEY = getenv("SECRET_KEY", default='django-insecure-vzb@hch-oxho^dww91=tk
 DEBUG = bool(int(getenv("DEBUG", default=1)))
 
 ALLOWED_HOSTS = eval(getenv("DJANGO_ALLOWED_HOSTS", "['127.0.0.1', 'localhost']"))
+CSRF_TRUSTED_ORIGINS = ['https://pychicss.revengine3r.ir','http://127.0.0.1']
 
 # Application definition
 
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework',
     'drf_spectacular',
+    'drf_spectacular_sidecar',
     'accounts',
     'college',
     'course',
@@ -184,8 +186,13 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Course Selection',
+    'TITLE': 'pychi',
+    'DESCRIPTION': 'Course selection',
     'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_DIST': 'SIDECAR',
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR'
 }
 
 PASSWORD_RESET_TIMEOUT = 5 * 60
