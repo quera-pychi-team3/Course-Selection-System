@@ -11,3 +11,5 @@ class StudentViewSetITAdmin(viewsets.ModelViewSet):
     permission_classes = [IsITAdmin]
     serializer_class = StudentSerializerITAdmin
     http_method_names = ['get', 'post', 'put', 'delete']
+    def get_queryset(self):
+        return Student.objects.all()

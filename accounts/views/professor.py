@@ -16,6 +16,7 @@ class ProfessorViewSet(viewsets.ModelViewSet):
     serializer_class = ProfessorSerializer
     http_method_names = ['get', 'put']
 
+
     def get_serializer_class(self):
         if self.action == 'update':
             return self.serializer_class
