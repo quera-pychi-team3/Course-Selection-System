@@ -2,7 +2,6 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
-from accounts.models import *
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse_lazy
 from django.contrib.auth.tokens import PasswordResetTokenGenerator

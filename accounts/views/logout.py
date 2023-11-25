@@ -15,5 +15,4 @@ class LogoutView(APIView):
     def post(self, request):
         serializer = self.serializer_class(data={'message': 'Logout successful'})
         serializer.is_valid()
-
         return Response(serializer.validated_data, status=status.HTTP_200_OK)

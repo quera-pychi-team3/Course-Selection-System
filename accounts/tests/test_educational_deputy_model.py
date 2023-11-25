@@ -1,7 +1,6 @@
 from django.test import TestCase
 from accounts.models import User, EducationalDeputy
 from college.models import Faculty, FieldOfStudy
-from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 class CustomUserModelTest(TestCase):
@@ -16,10 +15,6 @@ class CustomUserModelTest(TestCase):
         self.faculty2 = Faculty.objects.create(name='فنی حرفه ای 2 تبریز')
         self.fos = FieldOfStudy.objects.create(name='نرم افزار', group='کامپیوتر', faculty=self.faculty, units=75,
                                                degree='کارشناسی')
-        avatar = SimpleUploadedFile(name='test_image.jpg',
-                                    content=open(r"shared/files/avatar.jpg",
-                                                 'rb').read(),
-                                    content_type='image/jpeg')
         self.educational_deputy = EducationalDeputy.objects.create(user=self.base_user, faculty=self.faculty,
                                                                    field_of_study=self.fos)
 
