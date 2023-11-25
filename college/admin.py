@@ -1,7 +1,6 @@
 from shared.admin import *
 from .models import *
 from course.models import TermCourse
-from accounts.models import Student, Professor
 
 
 class TermInline(admin.TabularInline):
